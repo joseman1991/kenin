@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5ebf1e38-5719-4a07-8752-d4928847d40e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ced" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+tbpacientes.ced AS tbpacientes_ced,
+tbpacientes.nom AS tbpacientes_nom,
+tbpacientes.edad AS tbpacientes_edad,
+tbpacientes.sexo AS tbpacientes_sexo,
+medi.detallepadece AS tbhimedico_detallepadece,
+svr.nserv AS tbservicio_nserv,
+medi.nmedicatrata AS tbhimedico_nmedicatrata,
+medi.dosis AS medi_dosis,
+medi.vadministra AS medi_vadministra,
+medi.frecuencia AS medi_frecuencia,
+medi.duracion AS medi_duracion,
+medi.tipmedica AS medi_tipmedica,
+medi.freg AS medi_freg,
+m.nombres,
+m.apellidos
+
+FROM tbpacientes tbpacientes
+INNER JOIN tbhimedico medi ON medi.ced=tbpacientes.ced
+INNER JOIN tbservicios svr ON medi.idserv=svr.idserv
+INNER JOIN tbdoctores m on m.idesp=svr.idesp
+where tbpacientes.ced=$P{ced}]]>
+	</queryString>
+	<field name="tbpacientes_ced" class="java.lang.String"/>
+	<field name="tbpacientes_nom" class="java.lang.String"/>
+	<field name="tbpacientes_edad" class="java.lang.Integer"/>
+	<field name="tbpacientes_sexo" class="java.lang.String"/>
+	<field name="tbhimedico_detallepadece" class="java.lang.String"/>
+	<field name="tbservicio_nserv" class="java.lang.String"/>
+	<field name="tbhimedico_nmedicatrata" class="java.lang.String"/>
+	<field name="medi_dosis" class="java.lang.String"/>
+	<field name="medi_vadministra" class="java.lang.String"/>
+	<field name="medi_frecuencia" class="java.lang.String"/>
+	<field name="medi_duracion" class="java.lang.String"/>
+	<field name="medi_tipmedica" class="java.lang.String"/>
+	<field name="medi_freg" class="java.lang.String"/>
+	<field name="nombres" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellidos" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="113" splitType="Stretch">
+			<staticText>
+				<reportElement x="189" y="69" width="213" height="28" uuid="7d5c06b9-4117-43e6-9009-b9b34bedaa2d"/>
+				<textElement>
+					<font fontName="Arial" size="20" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[HISTORIAL CLINICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="171" y="17" width="254" height="52" forecolor="#009933" uuid="d142666f-5266-4ac7-97e5-f6d4ef5daf33"/>
+				<textElement>
+					<font fontName="Arial" size="40" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[SICMEDICA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="26" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="555" height="26" forecolor="#009933" backcolor="#99FF99" uuid="e849e6e6-42ed-4aba-8467-fea6e0df5d22"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="6" width="124" height="20" uuid="c0d3b455-5987-46c9-a8f5-e6a2be161cc6"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS/PACIENTE]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="106" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="61" width="124" height="26" forecolor="#009933" backcolor="#99FF99" uuid="8b0bf968-50d3-41df-8b55-507db4adf27a"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="555" height="61" forecolor="#006600" uuid="68d5691d-8980-40cb-bb5e-c2e7f045f9b1"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="24" y="30" width="88" height="20" uuid="5924504d-814c-4d9a-b962-16d6f6b1885e"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N.Paciente:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="124" y="30" width="294" height="20" uuid="58a3e354-30eb-4d12-bfdf-1a043b948816"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbpacientes_nom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="24" y="10" width="72" height="20" uuid="daac2ed9-77d4-49cc-b0e4-28960f349b6b"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cedula:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="124" y="10" width="106" height="20" uuid="3149ab44-0f66-4f5a-a556-9078fb43508a"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbpacientes_ced}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="437" y="10" width="43" height="20" uuid="718385ca-1320-407b-9e2c-5a4681af8c4e"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Edad:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="510" y="10" width="33" height="20" uuid="aad96d99-3797-4473-8e6e-52d08bec3235"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbpacientes_edad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="439" y="30" width="41" height="20" uuid="ba0fb93d-af47-4cd7-ae5a-6901fc73bfeb"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sexo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="510" y="30" width="33" height="20" uuid="e97b2a6e-312a-411d-8a67-951acb062ed5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbpacientes_sexo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="67" width="124" height="20" uuid="008e3705-4fa8-4421-ac57-fb2879958ea2"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORME/MEDICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="86" width="144" height="20" uuid="40b27c7d-b585-441b-bfc7-1be110855795"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Servico]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="157" y="86" width="111" height="20" uuid="4844c340-8130-4616-8e62-0543eabe0a5f"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Detalle]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="272" y="86" width="80" height="20" uuid="28418554-c52c-44ac-8e4f-2a9be2b314ec"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dosis]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="363" y="86" width="51" height="20" uuid="e3dbe119-e216-4b43-a845-ca73819f309b"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="425" y="86" width="130" height="20" uuid="36cd7260-06a0-4095-a3d0-11d0b86f9cd4"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Médico]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="6" y="0" width="144" height="20" uuid="8eea06d5-90c7-4dff-b4b1-1c674e5b751e"/>
+				<textFieldExpression><![CDATA[$F{tbservicio_nserv}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="156" y="0" width="112" height="20" uuid="4959e1f6-3f7a-4931-8761-d7f561ef4504"/>
+				<textFieldExpression><![CDATA[$F{tbhimedico_nmedicatrata}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="271" y="0" width="81" height="20" uuid="259cf0e5-5cca-470e-8ac8-17e5efee90a6"/>
+				<textFieldExpression><![CDATA[$F{medi_dosis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="0" width="53" height="20" uuid="733ac6de-799e-4ef2-a621-2ac845a8f471"/>
+				<textFieldExpression><![CDATA[$F{medi_freg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="423" y="0" width="69" height="20" uuid="913623ea-b00d-4d43-a96e-09724a78bca2"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="489" y="0" width="72" height="20" uuid="dceedea9-daf4-49c5-81af-8a0bbcf503ca"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="455" y="2" width="100" height="20" uuid="41132fed-8c46-494b-9988-17f2a88ce753"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

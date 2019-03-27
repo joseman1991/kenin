@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b97ad210-502c-48e8-b4ed-b5874fd5dd29">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="freg" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+tbpac.ced AS tbpacientes_ced,
+tbpac.nom AS tbpacientes_nom,
+tbserv.nserv AS tbservicios_nserv,
+tbhi.freg AS tbhi_freg
+FROM tbpacientes tbpac
+INNER JOIN tbhimedico tbhi on tbhi.ced=tbpac.ced
+INNER JOIN tbservicios tbserv on tbhi.idserv=tbserv.idserv where tbhi.freg=$P{freg}]]>
+	</queryString>
+	<field name="tbpacientes_ced" class="java.lang.String"/>
+	<field name="tbpacientes_nom" class="java.lang.String"/>
+	<field name="tbservicios_nserv" class="java.lang.String"/>
+	<field name="tbhi_freg" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="67" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="555" height="64" forecolor="#006633" uuid="61df0085-12a7-4bf6-b3c4-b7d0c8e5c120"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="126" y="11" width="327" height="42" uuid="980e33c7-85f5-4108-a93b-2bd79b2142d5"/>
+				<textElement>
+					<font fontName="Arial" size="36" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PACIENTES X DIA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="11" y="7" width="76" height="20" forecolor="#FFFFFF" backcolor="#999999" uuid="1d44ec48-8912-4619-9a77-64230288bf50"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CEDULA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="146" y="7" width="100" height="20" forecolor="#FFFFFF" backcolor="#999999" uuid="6d1718e0-e96c-439d-a3bf-42b0f97c4325"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N.PACIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="340" y="7" width="88" height="20" forecolor="#FFFFFF" backcolor="#999999" uuid="da80ac67-cbc0-4c29-8b8c-58493f579dc3"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[T.SERVICIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="466" y="7" width="89" height="20" forecolor="#FFFFFF" backcolor="#999999" uuid="92206d3b-381d-434b-9a7e-1bbbc56ff3d7"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[F.REGISTRO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="266" y="222" width="110" height="23" forecolor="#CC0000" uuid="c29e2e83-af3b-421f-b15c-d6f8a06e8221"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="11" y="5" width="76" height="20" uuid="7498ee1f-2040-48eb-be03-e2833d08b26c"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbpacientes_ced}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="5" width="195" height="20" uuid="4f2dcdcd-ca5a-4455-bfb0-4eb772f437cf"/>
+				<textFieldExpression><![CDATA[$F{tbpacientes_nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="328" y="5" width="136" height="20" uuid="721dce43-f965-4426-b008-2afe5b052670"/>
+				<textFieldExpression><![CDATA[$F{tbservicios_nserv}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="476" y="5" width="77" height="20" uuid="4bfeb341-070d-4897-8920-9663bdbc820d"/>
+				<textFieldExpression><![CDATA[$F{tbhi_freg}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="38" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="453" y="18" width="100" height="20" uuid="5cad7b06-ad1a-48bf-a617-d8f8bf4738b6"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

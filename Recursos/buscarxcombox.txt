@@ -1,0 +1,12 @@
+            String ita= cmbdoctor.getSelectedItem().toString();// si hay seleccionado u item que haga el proceso de consulta
+            try {
+            String ConsultaSQL="SELECT * FROM tbdoctores WHERE apellidos='"+ita+"'";
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(ConsultaSQL);        
+            while(rs.next()){
+                    txt1.setText(rs.getString("idti"));
+                    txt2.setText(rs.getString("id_area"));            
+            }
+            } catch (SQLException ex) {
+              Logger.getLogger(Citas.class.getName()).log(Level.SEVERE, null, ex);
+            }

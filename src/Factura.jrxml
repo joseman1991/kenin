@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a13b7e2f-f03e-4445-a8ac-67d0c4d1c902">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ced" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idfactura" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+f.idfact AS tbfacturacion_idfact,
+p.ced AS tbpacientes_ced,
+p.nom AS tbpacientes_nom,
+p.telf AS tbpacientes_telf,
+s.nesp AS tbespecialidades_nesp,
+f.detallefact AS tbfacturacion_detallefact,
+f.punit AS tbfacturacion_punit,
+f.subtot AS tbfacturacion_subtot,
+f.dscto AS tbfacturacion_dscto,
+f.iva AS tbfacturacion_iva,
+f.neto AS tbfacturacion_neto
+FROM
+tbfacturacion f
+INNER JOIN tbpacientes p ON f.ced=p.ced
+INNER JOIN tbespecialidades  s ON f.idesp=s.idesp WHERE p.ced=$P{ced} and f.idfact=$P{idfactura}]]>
+	</queryString>
+	<field name="tbfacturacion_idfact" class="java.lang.String"/>
+	<field name="tbpacientes_ced" class="java.lang.String"/>
+	<field name="tbpacientes_nom" class="java.lang.String"/>
+	<field name="tbpacientes_telf" class="java.lang.String"/>
+	<field name="tbespecialidades_nesp" class="java.lang.String"/>
+	<field name="tbfacturacion_detallefact" class="java.lang.String"/>
+	<field name="tbfacturacion_punit" class="java.lang.Double"/>
+	<field name="tbfacturacion_subtot" class="java.lang.Double"/>
+	<field name="tbfacturacion_dscto" class="java.lang.Double"/>
+	<field name="tbfacturacion_iva" class="java.lang.Double"/>
+	<field name="tbfacturacion_neto" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="171" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="379" y="12" width="150" height="74" forecolor="#006600" uuid="ed5bc167-d774-41b5-bfe8-8c1874521391"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="410" y="22" width="90" height="20" uuid="a4c6fd4b-d34b-4acd-b314-eef166c94f48"/>
+				<text><![CDATA[RUC 10046495581]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="42" width="110" height="20" uuid="8740d88e-9e3e-40aa-8bc1-e5ababe3242d"/>
+				<text><![CDATA[FACTURA DE VENTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="148" y="11" width="152" height="20" forecolor="#009933" uuid="6d7f4825-18e5-4bc9-ac32-646255dbd9be"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLINICA "TOUMA"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="142" y="52" width="158" height="20" uuid="d5f62288-d236-46be-b893-30f0a1ae4cc1"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefono: 05-2730815
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="32" width="275" height="20" uuid="af8ee54c-09b2-49ae-b711-ea439e3c3a05"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ricaurte 112 entre General Barona y Malecon (2,73 km)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="112" y="72" width="219" height="20" forecolor="#000000" uuid="542470a7-adbc-4ec1-9c43-c388c2c300b7"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BABAHOYO - LOS RIOS - ECUADOR]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="23" y="95" width="506" height="64" uuid="4a58bb47-b56a-4ab5-bde3-4c89f33fbd44"/>
+			</rectangle>
+			<textField>
+				<reportElement x="400" y="62" width="110" height="13" forecolor="#CC0000" uuid="c89e9629-dbce-408a-ad75-1351445f3629"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbfacturacion_idfact}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="35" y="106" width="65" height="20" uuid="287dc5b8-a88c-473d-9254-794eee98ce60"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cedula:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="106" width="90" height="20" uuid="08885783-9b37-434c-9ccd-499f30433d03"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbpacientes_ced}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="35" y="126" width="65" height="20" uuid="51734edf-96eb-43dc-8cd7-3c37ca6ff543"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cliente:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="126" width="270" height="20" uuid="df1fb7c1-b6a8-454f-a6f3-5c0f81fdce6b"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbpacientes_nom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="410" y="106" width="100" height="20" uuid="cd122195-b078-4eff-b984-47521bf67dc8"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Telefono]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="126" width="100" height="20" uuid="ccacdb87-0427-4606-8979-d0f07da91be3"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbpacientes_telf}]]></textFieldExpression>
+			</textField>
+			<elementGroup/>
+			<image>
+				<reportElement x="0" y="0" width="95" height="86" uuid="4f97cc5a-c23f-4442-b408-ee22403f62b0"/>
+				<imageExpression><![CDATA["C:\\Users\\Kevin\\Desktop\\recor34.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="112" y="0" width="284" height="20" backcolor="#99FF99" uuid="dea9c84a-b5f0-4996-a3c7-7f370b8df17f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DETALLE DEL SERVICIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="396" y="0" width="59" height="20" backcolor="#99FF99" uuid="24ac5c0a-cb98-44cd-9b95-6f02af9f580b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P.Unit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="455" y="0" width="100" height="20" backcolor="#99FF99" uuid="cd725e8c-d59a-4a8e-8249-d684064b0349"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[S.TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="112" height="20" backcolor="#99FF99" uuid="11661aef-71e4-440d-99ce-1a62e617ffdd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AREA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="112" y="0" width="284" height="20" uuid="39c0f835-dcb1-4c43-b7ac-00954aaa97f5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbfacturacion_detallefact}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="396" y="0" width="59" height="20" uuid="26b65db6-b7b3-4455-8ff7-44f57eedbfd5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbfacturacion_punit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="39405708-c985-4eca-a241-6028e35815ef"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbfacturacion_subtot}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="3" width="112" height="20" uuid="957635b3-5a92-44f1-9c25-33549c1108a8"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbespecialidades_nesp}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="97" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="396" y="50" width="59" height="20" forecolor="#006600" backcolor="#99FF99" uuid="a87b9ef3-e0f9-4674-85e7-a40f4f908708"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dscto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="396" y="70" width="59" height="20" forecolor="#006600" backcolor="#99FF99" uuid="22072c86-9519-41d2-95d6-ff573a2dcc9b"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[N.Total:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="50" width="100" height="20" uuid="1f602b31-7005-4184-9c15-ee96afb6a186"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbfacturacion_dscto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="70" width="100" height="20" uuid="c210f8ef-e933-4222-a518-50b28fdee3a5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbfacturacion_neto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

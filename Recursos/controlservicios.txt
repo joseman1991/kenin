@@ -1,0 +1,22 @@
+...<<< receta >>>...
+
+detalle
+dosis
+frecuencia
+viaadmin
+duracion
+cant
+tipoM
+medida
+marca
+
+...<<< tratamiento >>>..
+detalle
+dosis
+frecuencia
+viaadmin
+duracion
+precio
+tipom
+medida
+marca
