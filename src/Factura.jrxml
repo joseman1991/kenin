@@ -58,11 +58,11 @@ INNER JOIN tbespecialidades  s ON f.idesp=s.idesp WHERE p.ced=$P{ced} and f.idfa
 				<text><![CDATA[FACTURA DE VENTA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="148" y="11" width="152" height="20" forecolor="#009933" uuid="6d7f4825-18e5-4bc9-ac32-646255dbd9be"/>
-				<textElement>
+				<reportElement x="100" y="11" width="270" height="20" forecolor="#009933" uuid="6d7f4825-18e5-4bc9-ac32-646255dbd9be"/>
+				<textElement textAlignment="Center">
 					<font fontName="Arial" size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[CLINICA "TOUMA"]]></text>
+				<text><![CDATA[Hospital del Día Gabriel Andrade]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="142" y="52" width="158" height="20" uuid="d5f62288-d236-46be-b893-30f0a1ae4cc1"/>

@@ -62,11 +62,11 @@ where tbpacientes.ced=$P{ced}]]>
 				<text><![CDATA[HISTORIAL CLINICO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="171" y="17" width="254" height="52" forecolor="#009933" uuid="d142666f-5266-4ac7-97e5-f6d4ef5daf33"/>
-				<textElement>
-					<font fontName="Arial" size="40" isBold="true" isUnderline="true"/>
+				<reportElement x="0" y="17" width="555" height="52" forecolor="#009933" uuid="d142666f-5266-4ac7-97e5-f6d4ef5daf33"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="30" isBold="true" isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[SICMEDICA]]></text>
+				<text><![CDATA[Hospital del Día Gabriel Andrade]]></text>
 			</staticText>
 		</band>
 	</title>

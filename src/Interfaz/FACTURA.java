@@ -722,7 +722,8 @@ public class FACTURA extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-public void imprimir() {
+
+    public void imprimir() {
         if (!txtcedula.getText().equals("")) {
             Map p = new HashMap();
             p.put("ced", txtcedula.getText());
