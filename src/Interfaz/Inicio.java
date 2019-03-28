@@ -2,7 +2,11 @@ package Interfaz;
 
 import Clases.Conectar;
 import Clases.Class_Pacientes;
+import java.awt.BasicStroke;
+import java.awt.Color;
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.awt.Graphics2D;
+import java.awt.SplashScreen;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -24,12 +28,57 @@ public class Inicio extends javax.swing.JFrame {
     Class_Pacientes permi = new Class_Pacientes();
     Conectar cx = new Conectar();
     Connection cn = cx.conexion();
+    final SplashScreen splash;
+    final String[] texto = {"datos", "pacientes", "doctores", ""};
 
     public Inicio() {
         initComponents();
         Inicia_Disenio();
         txtuser.setText("kmejia");
         txtpass.setText("1234");
+        splash = SplashScreen.getSplashScreen();
+    }
+
+    public void animar() {
+        if (splash != null) {
+            Graphics2D g = splash.createGraphics();
+            try {
+                int i = 1;
+                LoadSplash(i, g);
+                i++;
+                Thread.sleep(1000);
+
+                LoadSplash(i, g);
+                i++;
+                Thread.sleep(1000);
+
+                LoadSplash(i, g);
+                i++;
+                Thread.sleep(1000);
+
+            } catch (Exception ex) {
+                Logger.getLogger(getName()).log(Level.SEVERE, null, ex);
+            }
+            splash.close();
+        }
+    }
+
+    private void LoadSplash(int i, Graphics2D g) {
+        g.setColor(new Color(4, 52, 101));//color de fondo
+        g.fillRect(203, 328, 280, 12);//para tapar texto anterior
+        g.setColor(Color.white);//color de texto	        
+        g.drawString("Cargando " + texto[i - 1] + "...", 203, 338);
+        g.setColor(Color.green);//color de barra de progeso
+        g.fillRect(204, 308, (i * 307 / texto.length), 12);//la barra de progreso
+        //se pinta una linea segmentada encima de la barra verde
+        float dash1[] = {2.0f};
+        BasicStroke dashed = new BasicStroke(9.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 5.0f, dash1, 0.0f);
+        g.setStroke(dashed);
+        g.setColor(Color.BLUE);//color de barra de progeso
+        g.setColor(new Color(4, 52, 101));
+        g.drawLine(205, 314, 510, 314);
+        //se actualiza todo
+        splash.update();
     }
 
     @SuppressWarnings("unchecked")
@@ -154,7 +203,7 @@ private int intentos = 3;
                         txtpass.setText(null);
                         txtuser.setText(null);
                         setDefaultCloseOperation(0);//desabilitar el boton (X)
-                        intentos=3;
+                        intentos = 3;
 
                     }
                     if (EST.equals("0")) {
@@ -171,7 +220,7 @@ private int intentos = 3;
 
                 } catch (SQLException ex) {
                     Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
-                    
+
                 }
 
             } else {

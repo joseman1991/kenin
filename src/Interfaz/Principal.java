@@ -179,7 +179,7 @@ public final class Principal extends javax.swing.JFrame {
         desktopPane.add(jToolBar2);
         jToolBar2.setBounds(1220, 0, 140, 720);
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ico/nuebp.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ico/splashKevin.png"))); // NOI18N
         jLabel8.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -190,22 +190,21 @@ public final class Principal extends javax.swing.JFrame {
             }
         });
         desktopPane.add(jLabel8);
-        jLabel8.setBounds(790, 280, 420, 340);
+        jLabel8.setBounds(400, 160, 620, 350);
 
         label1.setBackground(new java.awt.Color(0, 255, 255));
         label1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         label1.setForeground(new java.awt.Color(255, 0, 0));
-        label1.setText("SISMEC");
+        label1.setText("SISTEMA MÉDICO");
         desktopPane.add(label1);
-        label1.setBounds(790, 620, 410, 30);
-        label1.getAccessibleContext().setAccessibleName("SICMEC");
+        label1.setBounds(810, 660, 410, 30);
 
         label2.setBackground(new java.awt.Color(0, 255, 255));
         label2.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         label2.setForeground(new java.awt.Color(0, 0, 204));
         label2.setText("Sistema de Facturacion de Tratamientos Medicos");
         desktopPane.add(label2);
-        label2.setBounds(790, 650, 410, 28);
+        label2.setBounds(810, 690, 410, 28);
 
         jMenu1.setText("Opciones");
         jMenu1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N

@@ -389,7 +389,7 @@
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Ico/nuebp.png"/>
+              <Image iconType="3" name="/Ico/splashKevin.png"/>
             </Property>
           </Properties>
           <Events>
@@ -397,7 +397,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="790" y="280" width="420" height="340"/>
+              <AbsoluteConstraints x="400" y="160" width="620" height="350"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -412,14 +412,11 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="SISMEC"/>
+            <Property name="text" type="java.lang.String" value="SISTEMA M&#xc9;DICO"/>
           </Properties>
-          <AccessibilityProperties>
-            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="SICMEC"/>
-          </AccessibilityProperties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="790" y="620" width="410" height="30"/>
+              <AbsoluteConstraints x="810" y="660" width="410" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -438,7 +435,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="790" y="650" width="410" height="28"/>
+              <AbsoluteConstraints x="810" y="690" width="410" height="28"/>
             </Constraint>
           </Constraints>
         </Component>
