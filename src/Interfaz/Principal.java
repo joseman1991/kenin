@@ -190,14 +190,14 @@ public final class Principal extends javax.swing.JFrame {
             }
         });
         desktopPane.add(jLabel8);
-        jLabel8.setBounds(810, 280, 420, 340);
+        jLabel8.setBounds(790, 280, 420, 340);
 
         label1.setBackground(new java.awt.Color(0, 255, 255));
         label1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         label1.setForeground(new java.awt.Color(255, 0, 0));
         label1.setText("SISMEC");
         desktopPane.add(label1);
-        label1.setBounds(810, 620, 410, 30);
+        label1.setBounds(790, 620, 410, 30);
         label1.getAccessibleContext().setAccessibleName("SICMEC");
 
         label2.setBackground(new java.awt.Color(0, 255, 255));
@@ -205,7 +205,7 @@ public final class Principal extends javax.swing.JFrame {
         label2.setForeground(new java.awt.Color(0, 0, 204));
         label2.setText("Sistema de Facturacion de Tratamientos Medicos");
         desktopPane.add(label2);
-        label2.setBounds(810, 650, 410, 28);
+        label2.setBounds(790, 650, 410, 28);
 
         jMenu1.setText("Opciones");
         jMenu1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N

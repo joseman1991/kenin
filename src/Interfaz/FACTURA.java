@@ -3,12 +3,16 @@ package Interfaz;
 import Clases.Class_Servicios;
 import Clases.Class_Tipos_Servicios;
 import Clases.Conectar;
+import Clases.EnviarMensaje;
 import Clases.factura;
 import Clases.tiposervicio;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,10 +22,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
+import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class FACTURA extends javax.swing.JInternalFrame {
@@ -725,13 +731,42 @@ public void imprimir() {
             JasperPrint print;
 
             try {
+                PreparedStatement sentencia = cn.prepareStatement("select email from tbpacientes where ced=?");
+                sentencia.setString(1, txtcedula.getText());
+                ResultSet rs = sentencia.executeQuery();
+                String email = null;
+                if (rs.next()) {
+                    email = rs.getString(1);
+                }
                 report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
                         + "/src/Reportes/Factura.jrxml");
 
                 print = JasperFillManager.fillReport(report, p, cn);
-                JasperViewer view = new JasperViewer(print, false);
-                view.setTitle("Impresión de Factura");
-                view.setVisible(true);
+
+                JRPdfExporter exporter = new JRPdfExporter();
+                exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
+                File carpeta = new File("Recursos/pdf/");
+                String[] lista = carpeta.list();
+                int codf = lista.length;
+                exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, new FileOutputStream("Recursos/pdf/" + codf + ".pdf")); // your output goes here
+                exporter.exportReport();
+                if (email != null) {
+                    EnviarMensaje em = new EnviarMensaje();
+                    em.enviarConGMailAdjunto(email, "Factura electónica generada", "Estimado paciente se han adjuntado al presente mensaje los valores "
+                            + "a pagar de su factura", "Recursos/pdf/" + codf + ".pdf");
+                }
+
+                int slir = JOptionPane.showConfirmDialog(this, "Desea Imprimnir la Factura",
+                        "Impresión", 0, 3);
+                if (slir == JOptionPane.OK_OPTION) {
+                    // cc.desconectar();
+                    // System.exit(0);
+                    JasperViewer view = new JasperViewer(print, false);
+                    view.setTitle("Impresión de Factura");
+                    view.setVisible(true);
+
+                }
+                Class_Servicios.Limpiar();
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -776,15 +811,8 @@ public void imprimir() {
                     idfactura = txtfactu.getText();
                     llenarCampos();
                     ser.registrar_factura();
+                    imprimir();
 
-                    int slir = JOptionPane.showConfirmDialog(this, "Desea Imprimnir la Factura",
-                            "Impresión", 0, 3);
-                    if (slir == JOptionPane.OK_OPTION) {
-                        // cc.desconectar();
-                        // System.exit(0);
-                        imprimir();
-                        Class_Servicios.Limpiar();
-                    }
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }

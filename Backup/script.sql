@@ -141,6 +141,7 @@ SELECT MAX(idfact) AS idfact FROM tbfacturacion;
 
 
 CREATE TABLE tbhimedico(
+idh varchar(10) not null primary key,
 ced CHAR(10) NOT NULL,
 detallepadece CHAR(250) ,
 idserv INT ,
@@ -152,7 +153,8 @@ vadministra VARCHAR(50),
 tipmedica VARCHAR (30),    
 medi_medi VARCHAR(20),     
 tfabri VARCHAR(20),
-freg CHAR(10),        
+freg CHAR(10), 
+idesp int,       
 iduser INT NOT NULL
 )ENGINE=INNODB DEFAULT CHARSET=utf8;
 
