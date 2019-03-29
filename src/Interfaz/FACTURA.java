@@ -6,6 +6,7 @@ import Clases.Conectar;
 import Clases.EnviarMensaje;
 import Clases.factura;
 import Clases.tiposervicio;
+import java.awt.Cursor;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -730,7 +731,8 @@ public class FACTURA extends javax.swing.JInternalFrame {
             p.put("idfactura", idfactura);
             JasperReport report;
             JasperPrint print;
-
+            Cursor c = new Cursor(Cursor.WAIT_CURSOR);
+            this.setCursor(c);
             try {
                 PreparedStatement sentencia = cn.prepareStatement("select email from tbpacientes where ced=?");
                 sentencia.setString(1, txtcedula.getText());
@@ -772,6 +774,8 @@ public class FACTURA extends javax.swing.JInternalFrame {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            c = new Cursor(Cursor.DEFAULT_CURSOR);
+            this.setCursor(c);
         }
     }
 
