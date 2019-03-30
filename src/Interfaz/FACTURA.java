@@ -6,6 +6,7 @@ import Clases.Conectar;
 import Clases.Email;
 import Clases.EnviarMensaje;
 import Clases.Main;
+import Clases.Mensajes;
 import Clases.factura;
 import Clases.tiposervicio;
 import java.awt.Cursor;
@@ -736,12 +737,14 @@ public class FACTURA extends javax.swing.JInternalFrame {
             Cursor c = new Cursor(Cursor.WAIT_CURSOR);
             this.setCursor(c);
             try {
-                PreparedStatement sentencia = cn.prepareStatement("select email from tbpacientes where ced=?");
+                PreparedStatement sentencia = cn.prepareStatement("select email,telf  from tbpacientes where ced=?");
                 sentencia.setString(1, txtcedula.getText());
                 ResultSet rs = sentencia.executeQuery();
                 String email = null;
+                String telf = null;
                 if (rs.next()) {
                     email = rs.getString(1);
+                    telf = rs.getString(2);
                 }
                 report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
                         + "/src/Reportes/Factura.jrxml");
@@ -758,11 +761,14 @@ public class FACTURA extends javax.swing.JInternalFrame {
                 int slir = JOptionPane.showConfirmDialog(this, "Desea Imprimnir la Factura",
                         "Impresión", 0, 3);
                 if (email != null) {
-                   
+                    Mensajes e= new Mensajes();
                     Email m= new Email();
+                    e.setNumero(telf);
+                    e.setMensaje(txttotal.getText());
                     m.setDestino(email);
                     m.setRuta("Recursos/pdf/" + codf + ".pdf");                    
                     Main.setListaEmail(m);                    
+                    Main.setListaMensajes(e);                    
                 }
 
              
