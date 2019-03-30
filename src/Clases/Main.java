@@ -23,7 +23,7 @@ public class Main {
     public static void setListaEmail(Email mensaje) {
         synchronized (listaEmail) {
             if (listaEmail.add(mensaje)) {
-                listaMensajes.notify();
+                listaEmail.notify();
             }
         }
     }

@@ -12,7 +12,7 @@ public class Conectar {
     public Connection conexion() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/citas?autoReconnect=true&useSSL=false", "root", "mysql");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/citas?autoReconnect=true&useSSL=false", "root", "mariadb");
             //JOptionPane.showMessageDialog(null,"Conexion correcta");
 
         } catch (ClassNotFoundException ex) {

@@ -45,7 +45,7 @@ public class HiloMensajes implements Runnable {
 
     private void inicializar() {
         conArdAduino = new ConexionAduino(evento);
-        conArdAduino.setPuerto("COM12");
+        conArdAduino.setPuerto("COM3");
         conArdAduino.setSerial(19200);
         try {
             conArdAduino.iniciaArduino();
@@ -71,6 +71,7 @@ public class HiloMensajes implements Runnable {
                 Mensajes get = listaMensajes.get(0);
                 System.out.println("Enviando: " + get.enviarDatos());
                 String dt = get.getMensaje();
+                listaMensajes.remove(0);
                 int j;
                 for (j = 0; j < dt.length(); j++) {
                 }
