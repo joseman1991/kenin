@@ -16,6 +16,14 @@ public class Email {
     private String destino;
     private String ruta;
 
+    public Email() {
+        cuerpo="Factura electónica generada";
+        asunto="Estimado paciente se han adjuntado al presente mensaje los valores a pagar de su factura";
+    }
+    
+    
+    
+
     public String getAsunto() {
         return asunto;
     }

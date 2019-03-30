@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.MessagingException;
 
 /**
  *
@@ -17,8 +18,10 @@ import java.util.logging.Logger;
 public class HiloEmail implements Runnable{
 
      private final  List<Email> listaMensajes;
+     private final EnviarMensaje enviarM;
 
     public HiloEmail(List<Email> listaMensajes) {
+        this.enviarM = new EnviarMensaje();
         this.listaMensajes = listaMensajes;
     }
 
@@ -32,6 +35,14 @@ public class HiloEmail implements Runnable{
                         listaMensajes.wait();
                     } catch (InterruptedException ex) {
                         Logger.getLogger(HiloMensajes.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Email em= listaMensajes.get(0);
+                    try {
+                        listaMensajes.remove(0);
+                        enviarM.enviarConGMailAdjunto(em);
+                    } catch (MessagingException ex) {
+                        listaMensajes.add(em);
+                        System.out.println(ex.getMessage());
                     }
                 }
             }

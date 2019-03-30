@@ -9,6 +9,8 @@ public class Main {
 
     public static List<Mensajes> listaMensajes;
     public static List<Email> listaEmail;
+    
+    
 
     public static void setListaMensajes(Mensajes mensaje) {
         synchronized (listaMensajes) {

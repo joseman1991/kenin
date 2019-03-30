@@ -3,7 +3,9 @@ package Interfaz;
 import Clases.Class_Servicios;
 import Clases.Class_Tipos_Servicios;
 import Clases.Conectar;
+import Clases.Email;
 import Clases.EnviarMensaje;
+import Clases.Main;
 import Clases.factura;
 import Clases.tiposervicio;
 import java.awt.Cursor;
@@ -752,15 +754,18 @@ public class FACTURA extends javax.swing.JInternalFrame {
                 String[] lista = carpeta.list();
                 int codf = lista.length;
                 exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, new FileOutputStream("Recursos/pdf/" + codf + ".pdf")); // your output goes here
-                exporter.exportReport();
-                if (email != null) {
-                    EnviarMensaje em = new EnviarMensaje();
-                    em.enviarConGMailAdjunto(email, "Factura electónica generada", "Estimado paciente se han adjuntado al presente mensaje los valores "
-                            + "a pagar de su factura", "Recursos/pdf/" + codf + ".pdf");
-                }
-
+                exporter.exportReport();  
                 int slir = JOptionPane.showConfirmDialog(this, "Desea Imprimnir la Factura",
                         "Impresión", 0, 3);
+                if (email != null) {
+                   
+                    Email m= new Email();
+                    m.setDestino(email);
+                    m.setRuta("Recursos/pdf/" + codf + ".pdf");                    
+                    Main.setListaEmail(m);                    
+                }
+
+             
                 if (slir == JOptionPane.OK_OPTION) {
                     // cc.desconectar();
                     // System.exit(0);

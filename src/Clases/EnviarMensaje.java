@@ -52,7 +52,7 @@ public class EnviarMensaje {
         }
     }
 
-    public void enviarConGMailAdjunto(String destinatario, String asunto, String cuerpo, String ruta) throws AddressException, MessagingException {
+    public void enviarConGMailAdjunto(Email mensaje) throws AddressException, MessagingException {
 
         // Esto es lo que va delante de @gmail.com en tu cuenta de correo. Es el remitente también.
         String remitente = "apicannan@gmail.com";  //Para la dirección nomcuenta@gmail.com
@@ -70,10 +70,10 @@ public class EnviarMensaje {
         session.setDebug(true);
 
         BodyPart texto = new MimeBodyPart();
-        texto.setText(cuerpo);
+        texto.setText(mensaje.getCuerpo());
 
         BodyPart adjunto = new MimeBodyPart();
-        FileDataSource archivo = new FileDataSource(ruta);
+        FileDataSource archivo = new FileDataSource(mensaje.getRuta());
         adjunto.setDataHandler(new DataHandler(archivo));
         adjunto.setFileName("Factura " + archivo.getFile().getName());
 
@@ -84,8 +84,8 @@ public class EnviarMensaje {
         
         MimeMessage message = new MimeMessage(session);
         message.setFrom(new InternetAddress(remitente));
-        message.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));   //Se podrían añadir varios de la misma manera
-        message.setSubject(asunto);
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(mensaje.getDestino()));   //Se podrían añadir varios de la misma manera
+        message.setSubject(mensaje.getAsunto());
         message.setContent(multiParte);
         try (Transport transport = session.getTransport("smtp")) {
             transport.connect("smtp.gmail.com", remitente, clave);
