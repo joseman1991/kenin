@@ -79,7 +79,7 @@ public class HiloMensajes implements Runnable {
                 if (conArdAduino != null) {
                     conArdAduino.enviarDatos(get.enviarDatos());
                 }
-                listaMensajes.remove(0);
+               
                 TimeUnit.MILLISECONDS.sleep(j + 15000);
             } catch (InterruptedException ex) {
                 System.out.println("Que sucede" + ex.getMessage());

@@ -52,9 +52,10 @@ void mensaje_sms(String numer, String mensaj)
   Serial.println(mensaj);
   SIM900.println(num);  //Numero al que vamos a enviar el mensaje
   delay(1000);
-  SIM900.print("Se ha generado una factura electrónica, su voalor a pagar es $");
-  SIM900.print(mensaj);
-  SIM900.println(". Los detalles de su factura se enviaron a su correo electrónico");// Texto del SMS
+  String msg=String("Se ha generado una factura electronica, su voalor a pagar es $");
+  msg+=mensaj;
+  msg+=". Los detalles de su factura se enviaron a su correo electronico";
+  SIM900.print(msg);// Texto del SMS
   digitalWrite(13,HIGH);
   delay(100);
   SIM900.println((char)26); //Comando de finalización ^Z
@@ -92,5 +93,3 @@ void loop()
 
 
 }
-
-

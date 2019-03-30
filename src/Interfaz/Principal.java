@@ -403,7 +403,7 @@ private void cx() {
             p.put("freg", fecha);
             JasperReport report;
             JasperPrint print;
-
+            
             try {
                 report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
                         + "/src/Reportes/Reporte_x_Fecha.jrxml");
@@ -415,6 +415,7 @@ private void cx() {
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
+                System.out.println(e.getMessage());
 
             }
         }
